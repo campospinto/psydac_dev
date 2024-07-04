@@ -170,13 +170,34 @@ def plot_field_and_error(name, x, y, field_h, field_ex, *gridlines):
 
 def update_plot(fig, t, x, y, field_h, field_ex):
     ax0, ax1, cax0, cax1 = fig.axes
-    ax0.collections.clear(); cax0.clear()
-    ax1.collections.clear(); cax1.clear()
+    
+    # Remove collections from ax0
+    while ax0.collections:
+        ax0.collections[0].remove()
+    
+    # Remove collections from ax1
+    while ax1.collections:
+        ax1.collections[0].remove()
+    
+    # Clear colorbars
+    while cax0.collections:
+        cax0.collections[0].remove()
+    
+    while cax1.collections:
+        cax1.collections[0].remove()
+    
+    # Create new contour plots
     im0 = ax0.contourf(x, y, field_h)
     im1 = ax1.contourf(x, y, field_ex - field_h)
+    
+    # Create new colorbars
     fig.colorbar(im0, cax=cax0)
     fig.colorbar(im1, cax=cax1)
+    
+    # Update the title
     fig.suptitle('Time t = {:10.3e}'.format(t))
+    
+    # Draw the updated plot
     fig.canvas.draw()
 
 #==============================================================================
