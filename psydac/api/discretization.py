@@ -563,7 +563,7 @@ def discretize(a, *args, **kwargs):
 
     if isinstance(a, sym_BasicForm):
         if isinstance(a, (sym_Norm, sym_SemiNorm)):
-            if a._space.codomain_type == 'complex':
+            if hasattr(a._space, 'codomain_type') and a._space.codomain_type == 'complex':
                 print('WARNING (56436574):', 
                       'discretization of norms is not correctly tested yet for complex fields: see https://github.com/campospinto/psydac_dev/issues/12.')
             if isinstance(a, sym_SemiNorm):
