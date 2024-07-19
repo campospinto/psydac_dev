@@ -227,7 +227,7 @@ def run_helmholtz_2d(solution, kappa, e_w_0, dx_e_w_0, domain, ncells=None, degr
     equation = find(u, forall=v, lhs=a(u,v), rhs=l(v))
 
     l2norm =     Norm(error, domain, kind='l2')
-    h1norm = SemiNorm(error, domain, kind='h1')
+    h1norm = SemiNorm(error, domain, kind='h1') # [MCP 19.07.2024] This is probably wrong: see https://github.com/campospinto/psydac_dev/issues/12
 
     #+++++++++++++++++++++++++++++++
     # 2. Discretization
@@ -418,10 +418,11 @@ def test_complex_helmholtz_2d(plot_sol=False):
     l2_error, h1_error, uh = run_helmholtz_2d(solution, kappa, e_w_0, dx_e_w_0, domain, ncells=[2**2,2**2], degree=[2,2])
 
     expected_l2_error = 0.01540947560953227
-    expected_h1_error = 0.3915864915151489  # value observed on 16.07.2024 (the L2 error and plots seem fine)
-
-    print(f'errors: l2 = {l2_error}, h1 = {h1_error}')
-    print('expected errors: l2 = {}, h1 = {}'.format(expected_l2_error, expected_h1_error))
+    # commented because semi-norms of complex-fields are not working properly for now: see https://github.com/campospinto/psydac_dev/issues/12
+    expected_h1_error = 'NOT IMPLEMENTED' # 
+    
+    print(f'errors:          l2 = {l2_error}, h1 = {h1_error} (THIS IS PROBABLY WRONG)')
+    print(f'expected errors: l2 = {expected_l2_error}, h1 = {expected_h1_error}')
 
     if plot_sol:
         from psydac.feec.multipatch.plotting_utilities import get_plotting_grid, get_grid_vals
@@ -429,9 +430,6 @@ def test_complex_helmholtz_2d(plot_sol=False):
         from psydac.feec.pull_push                     import pull_2d_h1
         
         Id_mapping = IdentityMapping('M', 2)
-        # print(f'domain.interior = {domain.interior}')
-        # domain_interior = [domain]
-        # print(f'domain.logical_domain = {domain.logical_domain}')
         mappings = OrderedDict([(domain, Id_mapping)])
         mappings_list = [m for m in mappings.values()]
         call_mappings_list = [m.get_callable_mapping() for m in mappings_list]
@@ -460,7 +458,7 @@ def test_complex_helmholtz_2d(plot_sol=False):
         )
 
     assert( abs(l2_error - expected_l2_error) < 1.e-7)
-    assert( abs(h1_error - expected_h1_error) < 1.e-7)
+    # assert( abs(h1_error - expected_h1_error) < 1.e-7)
 
 def test_maxwell_2d_2_patch_dirichlet_2():
     # This test solve the maxwell problem with non-homogeneous dirichlet condition with penalization on the border of the exact solution
