@@ -580,8 +580,7 @@ def test_sympde_norm(backend):
     # aux 
     rho_l2_usym = Norm(rho - u1, domain, kind='l2')
     rho_l2_vsym = Norm(rho - v1, domain, kind='l2')
-    # phi_l2_vsym = Norm(phi - v1, domain, kind='l2')
-    phi_l2_vsym = Norm(v1 - phi, domain, kind='l2')
+    phi_l2_vsym = Norm(phi - v1, domain, kind='l2')
     rho_h1s_usym = SemiNorm(rho - u1, domain, kind='h1')
     rho_h1s_vsym = SemiNorm(rho - v1, domain, kind='h1')
     phi_h1s_vsym = SemiNorm(phi - v1, domain, kind='h1')
@@ -706,7 +705,17 @@ def test_sympde_norm(backend):
     l2_vphi  = l2_vsym_h.assemble(v1=phi_h)
     h1s_vphi = h1s_vsym_h.assemble(v1=phi_h)
 
-
+    # aux 3
+    phi_I, phi_R = phi.as_real_imag()
+    phi_I_l2_sym = Norm(phi_I - u1, domain, kind='l2')
+    phi_I_l2_sym_h = discretize(phi_I_l2_sym, domain_h, Uh, **kwargs)
+    zero_h = FemField(Uh)
+    phi_I_l2_u0 = phi_I_l2_sym_h.assemble(u1=zero_h)
+    phi_R_l2_sym = Norm(phi_R - u1, domain, kind='l2')
+    phi_R_l2_sym_h = discretize(phi_R_l2_sym, domain_h, Uh, **kwargs)
+    zero_h = FemField(Uh)
+    phi_R_l2_u0 = phi_R_l2_sym_h.assemble(u1=zero_h)
+    phi_IR_l2_u0 = np.sqrt(phi_I_l2_u0**2 + phi_R_l2_u0**2)
 
     # compare
     run_fails = False
@@ -736,15 +745,18 @@ def test_sympde_norm(backend):
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" phi L2 norms: ")
     phi_l2_ref = phi_l2_ex.evalf()
-    print(f'phi_l2_ref = {phi_l2_ref}')
-    print(f'phi_l2     = {phi_l2}')
-    print(f'phi_l2_v0  = {phi_l2_v0}')
-    print(f'phi_h_l2   = {phi_h_l2}')
-    print(f'l2_vphi    = {l2_vphi}')
+    print(f'phi_l2_ref   = {phi_l2_ref}')
+    print(f'phi_l2       = {phi_l2}')
+    print(f'phi_l2_v0    = {phi_l2_v0}')
+    print(f'phi_h_l2     = {phi_h_l2}')
+    print(f'l2_vphi      = {l2_vphi}')
+    print(f'phi_IR_l2_u0 = {phi_IR_l2_u0}')
     # assert abs(phi_l2 - phi_l2_ref) < tol  # TODO
     if run_fails: assert abs(phi_l2_v0 - phi_l2_ref) < tol  # FAILS!
     assert abs(phi_h_l2 - phi_l2_ref) < htol
     if run_fails: assert abs(l2_vphi - phi_l2_ref) < htol  # FAILS!
+    assert abs(phi_IR_l2_u0 - phi_l2_ref) < tol
+
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" rho H1-seminorms: ")
