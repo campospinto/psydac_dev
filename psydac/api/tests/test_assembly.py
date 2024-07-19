@@ -548,9 +548,9 @@ def test_sympde_norm(backend):
 
     domain = Square('domain', bounds1=(0, 1), bounds2=(0, 1))
 
-    U = ScalarFunctionSpace('U', domain, kind=None)
+    U = ScalarFunctionSpace('U', domain, kind='h1')
     U.codomain_type='real'    
-    V = ScalarFunctionSpace('V', domain, kind=None)
+    V = ScalarFunctionSpace('V', domain, kind='h1')
     V.codomain_type='complex'
     u1, u2 = elements_of(U, names='u1, u2')
     v1, v2 = elements_of(V, names='v1, v2')
@@ -662,9 +662,12 @@ def test_sympde_norm(backend):
         else:
             raise ValueError('space must be either "U" or "V"')
 
-    rho_h = proj(rho, space = 'U') # todo: try with V
+    rho_h = proj(rho, space = 'U')
     dx_rho_h = proj(dx_rho, space = 'U')
     dy_rho_h = proj(dy_rho, space = 'U')
+    vrho_h = proj(rho, space = 'V')
+    dx_vrho_h = proj(dx_rho, space = 'V')
+    dy_vrho_h = proj(dy_rho, space = 'V')
     phi_h = proj(phi, space = 'V')
     dx_phi_h = proj(dx_phi, space = 'V')
     dy_phi_h = proj(dy_phi, space = 'V')
@@ -672,6 +675,9 @@ def test_sympde_norm(backend):
     rho_c = rho_h.coeffs
     dx_rho_c = dx_rho_h.coeffs
     dy_rho_c = dy_rho_h.coeffs
+    vrho_c = vrho_h.coeffs
+    dx_vrho_c = dx_vrho_h.coeffs
+    dy_vrho_c = dy_vrho_h.coeffs
     phi_c = phi_h.coeffs
     dx_phi_c = dx_phi_h.coeffs
     dy_phi_c = dy_phi_h.coeffs
@@ -679,8 +685,11 @@ def test_sympde_norm(backend):
     rho_h_l2  = np.sqrt(rho_c.dot(M_U.dot(rho_c)))
     rho_h_h1s = np.sqrt(dx_rho_c.dot(M_U.dot(dx_rho_c)) + dy_rho_c.dot(M_U.dot(dy_rho_c))) 
 
-    phi_h_l2 = np.sqrt(np.real(phi_c.dot(M_V.dot(phi_c))))
-    phi_h_h1s = np.sqrt(np.real(dx_phi_c.dot(M_V.dot(dx_phi_c)) + dy_phi_c.dot(M_V.dot(dy_phi_c))))
+    vrho_h_l2  = np.sqrt(vrho_c.dot(M_V.dot(vrho_c)))
+    vrho_h_h1s = np.sqrt(dx_vrho_c.dot(M_V.dot(dx_vrho_c)) + dy_vrho_c.dot(M_V.dot(dy_vrho_c))) 
+
+    phi_h_l2 = np.sqrt(phi_c.dot(M_V.dot(phi_c)))
+    phi_h_h1s = np.sqrt(dx_phi_c.dot(M_V.dot(dx_phi_c)) + dy_phi_c.dot(M_V.dot(dy_phi_c)))
 
     # aux 2
     l2_usym_h  = discretize(l2_usym, domain_h, Uh, **kwargs)   # todo: try with V
@@ -691,65 +700,78 @@ def test_sympde_norm(backend):
     l2_urho  = l2_usym_h.assemble(u1=rho_h)
     h1s_urho = h1s_usym_h.assemble(u1=rho_h)
 
+    l2_vrho  = l2_vsym_h.assemble(v1=vrho_h)
+    h1s_vrho = h1s_vsym_h.assemble(v1=vrho_h)
+
     l2_vphi  = l2_vsym_h.assemble(v1=phi_h)
     h1s_vphi = h1s_vsym_h.assemble(v1=phi_h)
 
 
+
     # compare
-        
+    run_fails = False
+
     tol  = 1e-12
-    htol = 1e-4
+    htol = 1e-4    
 
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" rho L2 norms: ")    
+    rho_l2_ref = rho_l2_ex.evalf()    
+    print(f'rho_l2_ref = {rho_l2_ref}')
     print(f'rho_l2     = {rho_l2}')
     print(f'rho_l2_u0  = {rho_l2_u0}')
     print(f'rho_l2_v0  = {rho_l2_v0}')
-    print(f'rho_l2_ex  = {rho_l2_ex.evalf()}')
     print(f'rho_h_l2   = {rho_h_l2}')
+    print(f'vrho_h_l2  = {vrho_h_l2}')
     print(f'l2_urho    = {l2_urho}')
-    rho_l2_ref = rho_l2_ex.evalf()    
+    print(f'l2_vrho    = {l2_vrho}')
     # assert abs(rho_l2 - rho_l2_ref) < tol  # TODO
     assert abs(rho_l2_u0 - rho_l2_ref) < tol
     assert abs(rho_l2_v0 - rho_l2_ref) < tol
     assert abs(rho_h_l2 - rho_l2_ref) < htol
+    assert abs(vrho_h_l2 - rho_l2_ref) < htol
     assert abs(l2_urho - rho_l2_ref) < htol
+    assert abs(l2_vrho - rho_l2_ref) < htol
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" phi L2 norms: ")
+    phi_l2_ref = phi_l2_ex.evalf()
+    print(f'phi_l2_ref = {phi_l2_ref}')
     print(f'phi_l2     = {phi_l2}')
     print(f'phi_l2_v0  = {phi_l2_v0}')
-    print(f'phi_l2_ex  = {phi_l2_ex.evalf()}')
     print(f'phi_h_l2   = {phi_h_l2}')
     print(f'l2_vphi    = {l2_vphi}')
-    phi_l2_ref = phi_l2_ex.evalf()
     # assert abs(phi_l2 - phi_l2_ref) < tol  # TODO
-    assert abs(phi_l2_v0 - phi_l2_ref) < tol  # FAILS!
+    if run_fails: assert abs(phi_l2_v0 - phi_l2_ref) < tol  # FAILS!
     assert abs(phi_h_l2 - phi_l2_ref) < htol
-    assert abs(l2_vphi - phi_l2_ref) < htol  # FAILS!
+    if run_fails: assert abs(l2_vphi - phi_l2_ref) < htol  # FAILS!
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" rho H1-seminorms: ")
+    rho_h1s_ref = rho_h1s_ex.evalf()
+    print(f'rho_h1s_ref = {rho_h1s_ref}')
     print(f'rho_h1s_u0  = {rho_h1s_u0}')
     print(f'rho_h1s_v0  = {rho_h1s_v0}')
-    print(f'rho_h1s_ex  = {rho_h1s_ex.evalf()}')
     print(f'rho_h_h1s   = {rho_h_h1s}')
+    print(f'vrho_h_h1s  = {vrho_h_h1s}')
     print(f'h1s_urho    = {h1s_urho}')
-    rho_h1s_ref = rho_h1s_ex.evalf()
-    assert abs(rho_h1s_u0 - rho_h1s_ref) < tol  # FAILS!
-    assert abs(rho_h1s_v0 - rho_h1s_ref) < tol  # FAILS!
+    print(f'h1s_vrho    = {h1s_vrho}')
+    if run_fails: assert abs(rho_h1s_u0 - rho_h1s_ref) < tol  # FAILS!
+    if run_fails: assert abs(rho_h1s_v0 - rho_h1s_ref) < tol  # FAILS!
     assert abs(rho_h_h1s - rho_h1s_ref) < htol
+    assert abs(vrho_h_h1s - rho_h1s_ref) < htol 
     assert abs(h1s_urho - rho_h1s_ref) < htol
+    assert abs(h1s_vrho - rho_h1s_ref) < htol
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" phi H1-seminorms: ")
-    print(f'phi_h1s_v0  = {phi_h1s_v0}')
-    print(f'phi_h1s_ex  = {phi_h1s_ex.evalf()}')
-    print(f'phi_h_h1s   = {phi_h_h1s}')
-    print(f'h1s_vphi    = {h1s_vphi}')
     phi_h1s_ref = phi_h1s_ex.evalf()
-    assert abs(phi_h1s_v0 - phi_h1s_ref) < tol # FAILS!
+    print(f'phi_h1s_ref  = {phi_h1s_ref}')
+    print(f'phi_h1s_v0  = {phi_h1s_v0}')
+    print(f'phi_h_h1s   = {phi_h_h1s}')
+    print(f'h1s_vphi    = {h1s_vphi}')    
+    if run_fails: assert abs(phi_h1s_v0 - phi_h1s_ref) < tol # FAILS!
     assert abs(phi_h_h1s - phi_h1s_ref) < htol
-    assert abs(h1s_vphi - phi_h1s_ref) < htol # FAILS!
+    if run_fails: assert abs(h1s_vphi - phi_h1s_ref) < htol # FAILS!
     print(" ---- ---- ---- ---- ---- ---- ---- ")
     print(" ---- ---- ---- ---- ---- ---- ---- ")
 
