@@ -563,6 +563,12 @@ def discretize(a, *args, **kwargs):
 
     if isinstance(a, sym_BasicForm):
         if isinstance(a, (sym_Norm, sym_SemiNorm)):
+            if a._space.codomain_type == 'complex':
+                print('WARNING (56436574):', 
+                      'discretization of norms is not correctly tested yet for complex fields: see https://github.com/campospinto/psydac_dev/issues/12.')
+            if isinstance(a, sym_SemiNorm):
+                print('WARNING (87676545):', 
+                      'discretization of semi-norms is not correctly tested yet: see https://github.com/campospinto/psydac_dev/issues/12.')
             kernel_expr = TerminalExpr(a, domain)
             if not mapping is None:
                 kernel_expr = tuple(LogicalExpr(i, domain) for i in kernel_expr)
