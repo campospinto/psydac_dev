@@ -19,7 +19,7 @@ def run_poisson_2d_dir(ncells, degree, comm=None):
 
     # ... abstract model
     domain  = Square()
-    mapping = IdentityMapping('M',2)
+    mapping = IdentityMapping('M',dim=2)
     domain  = mapping(domain)
 
     V = VectorFunctionSpace('V', domain)

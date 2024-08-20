@@ -144,8 +144,8 @@ def test_poisson_2d_2_patch_dirichlet_3():
     A = Square('A',bounds1=(0, 0.5), bounds2=(0, 1))
     B = Square('B',bounds1=(0, 0.5), bounds2=(0, 1))
 
-    M1 = IdentityMapping('M1',2)
-    M2 = AffineMapping('M2',2, c1=1, c2=0,
+    M1 = IdentityMapping('M1',dim=2)
+    M2 = AffineMapping('M2',dim=2, c1=1, c2=0,
         a11=-1, a12=0,
         a21=0, a22=1)
 
@@ -173,8 +173,8 @@ def test_poisson_2d_2_patch_dirichlet_4():
     A = Square('A',bounds1=(0, 0.5), bounds2=(0, 1))
     B = Square('B',bounds1=(0, 0.5), bounds2=(0, 1))
 
-    M1 = AffineMapping('M1',2, c1=0.5, c2=0.,a11=1,  a22=1, a12=0, a21=0)
-    M2 = AffineMapping('M2',2, c1=0.5, c2=0, a11=-1, a12=0, a21=0, a22=1)
+    M1 = AffineMapping('M1',dim=2, c1=0.5, c2=0.,a11=1,  a22=1, a12=0, a21=0)
+    M2 = AffineMapping('M2',dim=2, c1=0.5, c2=0, a11=-1, a12=0, a21=0, a22=1)
 
     D1 = M1(A)
     D2 = M2(B)

@@ -113,7 +113,7 @@ def basis_atom_2d_1():
     lhs  = BasisAtom(expr)
     rhs  = PhysicalBasisValue(expr)
 
-    settings = {'dim': domain.dim, 'nderiv': 1, 'mapping': IdentityMapping('M', 2)}
+    settings = {'dim': domain.dim, 'nderiv': 1, 'mapping': IdentityMapping('M', dim=2)}
     _parse = lambda expr: parse(expr, settings=settings)
 
     u_x  = Symbol('u_x')
@@ -129,7 +129,7 @@ def basis_atom_2d_2():
     lhs  = BasisAtom(expr)
     rhs  = PhysicalBasisValue(expr)
 
-    settings = {'dim': domain.dim, 'nderiv': 1, 'mapping': IdentityMapping('M', 2)}
+    settings = {'dim': domain.dim, 'nderiv': 1, 'mapping': IdentityMapping('M', dim=2)}
     _parse = lambda expr: parse(expr, settings=settings)
 
     u_xy   = Symbol('u_xy')
@@ -144,7 +144,7 @@ def geometry_atom_2d_1():
     expr = M[0]
     lhs  = GeometryAtom(expr)
 
-    settings = {'dim': domain.dim, 'nderiv': 1, 'mapping': IdentityMapping('M', 2)}
+    settings = {'dim': domain.dim, 'nderiv': 1, 'mapping': IdentityMapping('M', dim=2)}
     _parse = lambda expr: parse(expr, settings=settings)
 
     x = Symbol('x')

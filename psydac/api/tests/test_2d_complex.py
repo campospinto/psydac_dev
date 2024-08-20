@@ -428,7 +428,7 @@ def test_complex_helmholtz_2d(plot_sol=False):
         from psydac.feec.multipatch.plotting_utilities import get_patch_knots_gridlines, my_small_plot
         from psydac.feec.pull_push                     import pull_2d_h1
         
-        Id_mapping = IdentityMapping('M', 2)
+        Id_mapping = IdentityMapping('M', dim=2)
         # print(f'domain.interior = {domain.interior}')
         # domain_interior = [domain]
         # print(f'domain.logical_domain = {domain.logical_domain}')

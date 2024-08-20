@@ -37,7 +37,7 @@ def get_2D_rotation_mapping(name='no_name', c1=0., c2=0., alpha=None):
     if alpha is None: 
         alpha = np.pi/2
     return AffineMapping(
-        name, 2, c1=c1, c2=c2,
+        name, dim=2, c1=c1, c2=c2,
         a11=np.cos(alpha), a12=-np.sin(alpha),
         a21=np.sin(alpha), a22=np.cos(alpha),
     )
@@ -51,7 +51,7 @@ def flip_axis(name='no_name', c1=0., c2=0.):
     #                 'z': 'c3 + a31*x1 + a32*x2 + a33*x3'}
 
     return AffineMapping(
-        name, 2, c1=c1, c2=c2,
+        name, dim=2, c1=c1, c2=c2,
         a11=0, a12=1,
         a21=1, a22=0,
     )
@@ -93,14 +93,14 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             'OmegaLog1', bounds1=(
                 0., np.pi), bounds2=(
                 0., np.pi / 2))
-        mapping_1 = IdentityMapping('M1', 2)
+        mapping_1 = IdentityMapping('M1', dim=2)
         domain_1 = mapping_1(OmegaLog1)
 
         OmegaLog2 = Square(
             'OmegaLog2', bounds1=(
                 0., np.pi), bounds2=(
                 np.pi / 2, np.pi))
-        mapping_2 = IdentityMapping('M2', 2)
+        mapping_2 = IdentityMapping('M2', dim=2)
         domain_2 = mapping_2(OmegaLog2)
 
         patches = [domain_1, domain_2]
@@ -146,7 +146,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 0.,
                 np.pi / 3))
-        mapping_1 = IdentityMapping('M1', 2)
+        mapping_1 = IdentityMapping('M1', dim=2)
         domain_1 = mapping_1(OmegaLog1)
 
         OmegaLog2 = Square(
@@ -157,7 +157,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 0.,
                 np.pi / 3))
-        mapping_2 = IdentityMapping('M2', 2)
+        mapping_2 = IdentityMapping('M2', dim=2)
         domain_2 = mapping_2(OmegaLog2)
 
         OmegaLog3 = Square(
@@ -168,7 +168,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi / 3,
                 np.pi * 2 / 3))
-        mapping_3 = IdentityMapping('M3', 2)
+        mapping_3 = IdentityMapping('M3', dim=2)
         domain_3 = mapping_3(OmegaLog3)
 
         OmegaLog4 = Square(
@@ -179,7 +179,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi / 3,
                 np.pi * 2 / 3))
-        mapping_4 = IdentityMapping('M4', 2)
+        mapping_4 = IdentityMapping('M4', dim=2)
         domain_4 = mapping_4(OmegaLog4)
 
         OmegaLog5 = Square(
@@ -190,7 +190,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi * 2 / 3,
                 np.pi))
-        mapping_5 = IdentityMapping('M5', 2)
+        mapping_5 = IdentityMapping('M5', dim=2)
         domain_5 = mapping_5(OmegaLog5)
 
         OmegaLog6 = Square(
@@ -201,7 +201,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi * 2 / 3,
                 np.pi))
-        mapping_6 = IdentityMapping('M6', 2)
+        mapping_6 = IdentityMapping('M6', dim=2)
         domain_6 = mapping_6(OmegaLog6)
 
         patches = [domain_1, domain_2, domain_3, domain_4, domain_5, domain_6]
@@ -227,7 +227,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 0.,
                 np.pi / 3))
-        mapping_1 = IdentityMapping('M1', 2)
+        mapping_1 = IdentityMapping('M1', dim=2)
         domain_1 = mapping_1(OmegaLog1)
 
         OmegaLog2 = Square(
@@ -238,7 +238,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 0.,
                 np.pi / 3))
-        mapping_2 = IdentityMapping('M2', 2)
+        mapping_2 = IdentityMapping('M2', dim=2)
         domain_2 = mapping_2(OmegaLog2)
 
         OmegaLog3 = Square(
@@ -249,7 +249,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 0.,
                 np.pi / 3))
-        mapping_3 = IdentityMapping('M3', 2)
+        mapping_3 = IdentityMapping('M3', dim=2)
         domain_3 = mapping_3(OmegaLog3)
 
         OmegaLog4 = Square(
@@ -260,7 +260,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi / 3,
                 np.pi * 2 / 3))
-        mapping_4 = IdentityMapping('M4', 2)
+        mapping_4 = IdentityMapping('M4', dim=2)
         domain_4 = mapping_4(OmegaLog4)
 
         OmegaLog5 = Square(
@@ -271,7 +271,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi / 3,
                 np.pi * 2 / 3))
-        mapping_5 = IdentityMapping('M5', 2)
+        mapping_5 = IdentityMapping('M5', dim=2)
         domain_5 = mapping_5(OmegaLog5)
 
         OmegaLog6 = Square(
@@ -282,7 +282,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi * 2 / 3,
                 np.pi))
-        mapping_6 = IdentityMapping('M6', 2)
+        mapping_6 = IdentityMapping('M6', dim=2)
         domain_6 = mapping_6(OmegaLog6)
 
         OmegaLog7 = Square(
@@ -293,7 +293,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi * 2 / 3,
                 np.pi))
-        mapping_7 = IdentityMapping('M7', 2)
+        mapping_7 = IdentityMapping('M7', dim=2)
         domain_7 = mapping_7(OmegaLog7)
 
         OmegaLog8 = Square(
@@ -304,7 +304,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi * 2 / 3,
                 np.pi))
-        mapping_8 = IdentityMapping('M8', 2)
+        mapping_8 = IdentityMapping('M8', dim=2)
         domain_8 = mapping_8(OmegaLog8)
 
         # center domain
@@ -316,7 +316,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             bounds2=(
                 np.pi / 3,
                 np.pi * 2 / 3))
-        mapping_9 = IdentityMapping('M9', 2)
+        mapping_9 = IdentityMapping('M9', dim=2)
         domain_9 = mapping_9(OmegaLog9)
 
         if domain_name == 'square_8':
@@ -534,7 +534,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
         #mapping_12 = get_2D_rotation_mapping('M12', c1=cr, c2=h/2 , alpha=0)
         mapping_12 = AffineMapping(
             'M12',
-            2,
+            dim=2,
             c1=cr,
             c2=h / 2,
             a11=1,
@@ -616,7 +616,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
         domain_14_2 = mapping_14_2(dom_log_14_2)
 
         # dom_log_15 = Square('dom15', bounds1=(-r_min-h, r_min+h), bounds2=(0, h))
-        # mapping_15 = IdentityMapping('M15', 2)
+        # mapping_15 = IdentityMapping('M15', dim=2)
         # domain_15  = mapping_15(dom_log_15)
 
         if domain_name == 'pretzel':
@@ -949,7 +949,7 @@ def build_cartesian_multipatch_domain(ncells, log_interval_x, log_interval_y, ma
 
     # mappings
     if mapping == 'identity':
-        list_mapping = [[IdentityMapping('M_' + str(j) + '_' + str(i), 2)
+        list_mapping = [[IdentityMapping('M_' + str(j) + '_' + str(i), dim=2)
                             for i in range(nb_patchy)] for j in range(nb_patchx)]
     elif mapping == 'polar':
         list_mapping = [[PolarMapping('M_' + str(j) + '_' + str(i), 2, c1=0., c2=0., rmin=0., rmax=1.) 

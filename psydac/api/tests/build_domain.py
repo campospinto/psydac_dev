@@ -42,7 +42,7 @@ def get_2D_rotation_mapping(name='no_name', c1=0., c2=0., alpha=np.pi/2):
     #                 'z': 'c3 + a31*x1 + a32*x2 + a33*x3'}
 
     return AffineMapping(
-        name, 2, c1=c1, c2=c2,
+        name, dim=2, c1=c1, c2=c2,
         a11=np.cos(alpha), a12=-np.sin(alpha),
         a21=np.sin(alpha), a22=np.cos(alpha),
     )
@@ -55,7 +55,7 @@ def flip_axis(name='no_name', c1=0., c2=0.):
     #                 'z': 'c3 + a31*x1 + a32*x2 + a33*x3'}
 
     return AffineMapping(
-        name, 2, c1=c1, c2=c2,
+        name, dim=2, c1=c1, c2=c2,
         a11=0, a12=1,
         a21=1, a22=0,
     )
@@ -157,7 +157,7 @@ def build_pretzel(domain_name='pretzel', r_min=None, r_max=None):
     domain_9_2  = mapping_9_2(dom_log_9_2)
 
     dom_log_12 = Square('dom12',bounds1=(-hr, hr), bounds2=(-h/2, h/2))
-    mapping_12 = AffineMapping('M12', 2, c1=cr, c2=h/2, a11=1, a22=-1, a21=0, a12=0)
+    mapping_12 = AffineMapping('M12', dim=2, c1=cr, c2=h/2, a11=1, a22=-1, a21=0, a12=0)
     domain_12  = mapping_12(dom_log_12)
 
     dom_log_13 = Square('dom13',bounds1=(np.pi*3/2, np.pi*2), bounds2=(r_min, r_max))

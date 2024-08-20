@@ -35,7 +35,7 @@ except KeyError:
 def test_codegen():
     kappa = 10**15
     domain  = Square()
-    mapping = IdentityMapping('M',2)
+    mapping = IdentityMapping('M',dim=2)
     nn      = NormalVector('nn')
     V       = ScalarFunctionSpace('V', domain)
     u,v     = elements_of(V, names='u,v')

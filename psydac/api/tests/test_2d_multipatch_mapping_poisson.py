@@ -161,9 +161,9 @@ def test_poisson_2d_2_patches_dirichlet_1():
 #------------------------------------------------------------------------------
 def test_poisson_2d_2_patches_dirichlet_2():
 
-    mapping_1 = IdentityMapping('M1', 2)
-    mapping_2 = PolarMapping   ('M2', 2, c1 = 0., c2 = 0.5, rmin = 0., rmax=1.)
-    mapping_3 = AffineMapping  ('M3', 2, c1 = 0., c2 = np.pi, a11 = -1, a22 = -1, a21 = 0, a12 = 0)
+    mapping_1 = IdentityMapping('M1', dim=2)
+    mapping_2 = PolarMapping   ('M2', dim=2, c1 = 0., c2 = 0.5, rmin = 0., rmax=1.)
+    mapping_3 = AffineMapping  ('M3', dim=2, c1 = 0., c2 = np.pi, a11 = -1, a22 = -1, a21 = 0, a12 = 0)
 
     A = Square('A',bounds1=(0.5, 1.), bounds2=(-1., 0.5))
     B = Square('B',bounds1=(0.5, 1.), bounds2=(0, np.pi))
