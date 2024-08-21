@@ -400,42 +400,42 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             'dom1', bounds1=(
                 r_min, r_max), bounds2=(
                 0, np.pi / 2))
-        mapping_1 = PolarMapping('M1', 2, c1=h, c2=h, rmin=0., rmax=1.)
+        mapping_1 = PolarMapping('M1', c1=h, c2=h, rmin=0., rmax=1.)
         domain_1 = mapping_1(dom_log_1)
 
         dom_log_1_1 = Square(
             'dom1_1', bounds1=(
                 r_min, r_max), bounds2=(
                 0, np.pi / 4))
-        mapping_1_1 = PolarMapping('M1_1', 2, c1=h, c2=h, rmin=0., rmax=1.)
+        mapping_1_1 = PolarMapping('M1_1', c1=h, c2=h, rmin=0., rmax=1.)
         domain_1_1 = mapping_1_1(dom_log_1_1)
 
         dom_log_1_2 = Square(
             'dom1_2', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi / 4, np.pi / 2))
-        mapping_1_2 = PolarMapping('M1_2', 2, c1=h, c2=h, rmin=0., rmax=1.)
+        mapping_1_2 = PolarMapping('M1_2', c1=h, c2=h, rmin=0., rmax=1.)
         domain_1_2 = mapping_1_2(dom_log_1_2)
 
         dom_log_2 = Square(
             'dom2', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi / 2, np.pi))
-        mapping_2 = PolarMapping('M2', 2, c1=-h, c2=h, rmin=0., rmax=1.)
+        mapping_2 = PolarMapping('M2', c1=-h, c2=h, rmin=0., rmax=1.)
         domain_2 = mapping_2(dom_log_2)
 
         dom_log_2_1 = Square(
             'dom2_1', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi / 2, np.pi * 3 / 4))
-        mapping_2_1 = PolarMapping('M2_1', 2, c1=-h, c2=h, rmin=0., rmax=1.)
+        mapping_2_1 = PolarMapping('M2_1', c1=-h, c2=h, rmin=0., rmax=1.)
         domain_2_1 = mapping_2_1(dom_log_2_1)
 
         dom_log_2_2 = Square(
             'dom2_2', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi * 3 / 4, np.pi))
-        mapping_2_2 = PolarMapping('M2_2', 2, c1=-h, c2=h, rmin=0., rmax=1.)
+        mapping_2_2 = PolarMapping('M2_2', c1=-h, c2=h, rmin=0., rmax=1.)
         domain_2_2 = mapping_2_2(dom_log_2_2)
 
         # for debug:
@@ -443,49 +443,49 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
             'dom10', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi / 2, np.pi))
-        mapping_10 = PolarMapping('M10', 2, c1=h, c2=h, rmin=0., rmax=1.)
+        mapping_10 = PolarMapping('M10', c1=h, c2=h, rmin=0., rmax=1.)
         domain_10 = mapping_10(dom_log_10)
 
         dom_log_3 = Square(
             'dom3', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi, np.pi * 3 / 2))
-        mapping_3 = PolarMapping('M3', 2, c1=-h, c2=0, rmin=0., rmax=1.)
+        mapping_3 = PolarMapping('M3', c1=-h, c2=0, rmin=0., rmax=1.)
         domain_3 = mapping_3(dom_log_3)
 
         dom_log_3_1 = Square(
             'dom3_1', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi, np.pi * 5 / 4))
-        mapping_3_1 = PolarMapping('M3_1', 2, c1=-h, c2=0, rmin=0., rmax=1.)
+        mapping_3_1 = PolarMapping('M3_1', c1=-h, c2=0, rmin=0., rmax=1.)
         domain_3_1 = mapping_3_1(dom_log_3_1)
 
         dom_log_3_2 = Square(
             'dom3_2', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi * 5 / 4, np.pi * 3 / 2))
-        mapping_3_2 = PolarMapping('M3_2', 2, c1=-h, c2=0, rmin=0., rmax=1.)
+        mapping_3_2 = PolarMapping('M3_2', c1=-h, c2=0, rmin=0., rmax=1.)
         domain_3_2 = mapping_3_2(dom_log_3_2)
 
         dom_log_4 = Square(
             'dom4', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi * 3 / 2, np.pi * 2))
-        mapping_4 = PolarMapping('M4', 2, c1=h, c2=0, rmin=0., rmax=1.)
+        mapping_4 = PolarMapping('M4', c1=h, c2=0, rmin=0., rmax=1.)
         domain_4 = mapping_4(dom_log_4)
 
         dom_log_4_1 = Square(
             'dom4_1', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi * 3 / 2, np.pi * 7 / 4))
-        mapping_4_1 = PolarMapping('M4_1', 2, c1=h, c2=0, rmin=0., rmax=1.)
+        mapping_4_1 = PolarMapping('M4_1', c1=h, c2=0, rmin=0., rmax=1.)
         domain_4_1 = mapping_4_1(dom_log_4_1)
 
         dom_log_4_2 = Square(
             'dom4_2', bounds1=(
                 r_min, r_max), bounds2=(
                 np.pi * 7 / 4, np.pi * 2))
-        mapping_4_2 = PolarMapping('M4_2', 2, c1=h, c2=0, rmin=0., rmax=1.)
+        mapping_4_2 = PolarMapping('M4_2', c1=h, c2=0, rmin=0., rmax=1.)
         domain_4_2 = mapping_4_2(dom_log_4_2)
 
         dom_log_5 = Square('dom5', bounds1=(-hr, hr), bounds2=(-h / 2, h / 2))
@@ -552,7 +552,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 r_min,
                 r_max))
         mapping_13 = TransposedPolarMapping(
-            'M13', 2, c1=-r_min - h, c2=r_min + h, rmin=0., rmax=1.)
+            'M13', c1=-r_min - h, c2=r_min + h, rmin=0., rmax=1.)
         domain_13 = mapping_13(dom_log_13)
 
         dom_log_13_1 = Square(
@@ -564,7 +564,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 r_min,
                 r_max))
         mapping_13_1 = TransposedPolarMapping(
-            'M13_1', 2, c1=-r_min - h, c2=r_min + h, rmin=0., rmax=1.)
+            'M13_1', c1=-r_min - h, c2=r_min + h, rmin=0., rmax=1.)
         domain_13_1 = mapping_13_1(dom_log_13_1)
 
         dom_log_13_2 = Square(
@@ -576,7 +576,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 r_min,
                 r_max))
         mapping_13_2 = TransposedPolarMapping(
-            'M13_2', 2, c1=-r_min - h, c2=r_min + h, rmin=0., rmax=1.)
+            'M13_2', c1=-r_min - h, c2=r_min + h, rmin=0., rmax=1.)
         domain_13_2 = mapping_13_2(dom_log_13_2)
 
         dom_log_14 = Square(
@@ -588,7 +588,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 r_min,
                 r_max))
         mapping_14 = TransposedPolarMapping(
-            'M14', 2, c1=r_min + h, c2=r_min + h, rmin=0., rmax=1.)
+            'M14', c1=r_min + h, c2=r_min + h, rmin=0., rmax=1.)
         domain_14 = mapping_14(dom_log_14)
 
         dom_log_14_1 = Square(
@@ -600,7 +600,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 r_min,
                 r_max))      # STOP ICI: check domain
         mapping_14_1 = TransposedPolarMapping(
-            'M14_1', 2, c1=r_min + h, c2=r_min + h, rmin=0., rmax=1.)
+            'M14_1', c1=r_min + h, c2=r_min + h, rmin=0., rmax=1.)
         domain_14_1 = mapping_14_1(dom_log_14_1)
 
         dom_log_14_2 = Square(
@@ -612,7 +612,7 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 r_min,
                 r_max))
         mapping_14_2 = TransposedPolarMapping(
-            'M14_2', 2, c1=r_min + h, c2=r_min + h, rmin=0., rmax=1.)
+            'M14_2', c1=r_min + h, c2=r_min + h, rmin=0., rmax=1.)
         domain_14_2 = mapping_14_2(dom_log_14_2)
 
         # dom_log_15 = Square('dom15', bounds1=(-r_min-h, r_min+h), bounds2=(0, h))
@@ -785,21 +785,21 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
         # Curved L-shape benchmark domain of Monique Dauge, see 2DomD in https://perso.univ-rennes1.fr/monique.dauge/core/index.html
         # here with 3 patches
         dom_log_1 = Square('dom1', bounds1=(2, 3), bounds2=(0., np.pi / 8))
-        mapping_1 = PolarMapping('M1', 2, c1=0., c2=0., rmin=0., rmax=1.)
+        mapping_1 = PolarMapping('M1', c1=0., c2=0., rmin=0., rmax=1.)
         domain_1 = mapping_1(dom_log_1)
 
         dom_log_2 = Square(
             'dom2', bounds1=(
                 2, 3), bounds2=(
                 np.pi / 8, np.pi / 4))
-        mapping_2 = PolarMapping('M2', 2, c1=0., c2=0., rmin=0., rmax=1.)
+        mapping_2 = PolarMapping('M2', c1=0., c2=0., rmin=0., rmax=1.)
         domain_2 = mapping_2(dom_log_2)
 
         dom_log_3 = Square(
             'dom3', bounds1=(
                 1, 2), bounds2=(
                 np.pi / 8, np.pi / 4))
-        mapping_3 = PolarMapping('M3', 2, c1=0., c2=0., rmin=0., rmax=1.)
+        mapping_3 = PolarMapping('M3', c1=0., c2=0., rmin=0., rmax=1.)
         domain_3 = mapping_3(dom_log_3)
 
         patches = ([
@@ -825,21 +825,21 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 'OmegaLog1', bounds1=(
                     r_min, r_max), bounds2=(
                     0., np.pi / 2))
-            mapping_1 = PolarMapping('M1', 2, c1=0., c2=0., rmin=0., rmax=1.)
+            mapping_1 = PolarMapping('M1', c1=0., c2=0., rmin=0., rmax=1.)
             domain_1 = mapping_1(OmegaLog1)
 
             OmegaLog2 = Square(
                 'OmegaLog2', bounds1=(
                     r_min, r_max), bounds2=(
                     np.pi / 2, np.pi))
-            mapping_2 = PolarMapping('M2', 2, c1=0., c2=0., rmin=0., rmax=1.)
+            mapping_2 = PolarMapping('M2', c1=0., c2=0., rmin=0., rmax=1.)
             domain_2 = mapping_2(OmegaLog2)
 
             OmegaLog3 = Square(
                 'OmegaLog3', bounds1=(
                     r_min, r_max), bounds2=(
                     np.pi, 2 * np.pi))
-            mapping_3 = PolarMapping('M3', 2, c1=0., c2=0., rmin=0., rmax=1.)
+            mapping_3 = PolarMapping('M3', c1=0., c2=0., rmin=0., rmax=1.)
             domain_3 = mapping_3(OmegaLog3)
 
             patches = [domain_1, domain_2, domain_3]
@@ -855,28 +855,28 @@ def build_multipatch_domain(domain_name='square_2', r_min=None, r_max=None):
                 'OmegaLog1', bounds1=(
                     r_min, r_max), bounds2=(
                     0., np.pi / 2))
-            mapping_1 = PolarMapping('M1', 2, c1=0., c2=0., rmin=0., rmax=1.)
+            mapping_1 = PolarMapping('M1', c1=0., c2=0., rmin=0., rmax=1.)
             domain_1 = mapping_1(OmegaLog1)
 
             OmegaLog2 = Square(
                 'OmegaLog2', bounds1=(
                     r_min, r_max), bounds2=(
                     np.pi / 2, np.pi))
-            mapping_2 = PolarMapping('M2', 2, c1=0., c2=0., rmin=0., rmax=1.)
+            mapping_2 = PolarMapping('M2', c1=0., c2=0., rmin=0., rmax=1.)
             domain_2 = mapping_2(OmegaLog2)
 
             OmegaLog3 = Square(
                 'OmegaLog3', bounds1=(
                     r_min, r_max), bounds2=(
                     np.pi, np.pi * 3 / 2))
-            mapping_3 = PolarMapping('M3', 2, c1=0., c2=0., rmin=0., rmax=1.)
+            mapping_3 = PolarMapping('M3', c1=0., c2=0., rmin=0., rmax=1.)
             domain_3 = mapping_3(OmegaLog3)
 
             OmegaLog4 = Square(
                 'OmegaLog4', bounds1=(
                     r_min, r_max), bounds2=(
                     np.pi * 3 / 2, np.pi * 2))
-            mapping_4 = PolarMapping('M4', 2, c1=0., c2=0., rmin=0., rmax=1.)
+            mapping_4 = PolarMapping('M4', c1=0., c2=0., rmin=0., rmax=1.)
             domain_4 = mapping_4(OmegaLog4)
 
             patches = [domain_1, domain_2, domain_3, domain_4]
@@ -952,7 +952,7 @@ def build_cartesian_multipatch_domain(ncells, log_interval_x, log_interval_y, ma
         list_mapping = [[IdentityMapping('M_' + str(j) + '_' + str(i), dim=2)
                             for i in range(nb_patchy)] for j in range(nb_patchx)]
     elif mapping == 'polar':
-        list_mapping = [[PolarMapping('M_' + str(j) + '_' + str(i), 2, c1=0., c2=0., rmin=0., rmax=1.) 
+        list_mapping = [[PolarMapping('M_' + str(j) + '_' + str(i), c1=0., c2=0., rmin=0., rmax=1.) 
                             for i in range(nb_patchy)] for j in range(nb_patchx)]
 
     # list of physical patches

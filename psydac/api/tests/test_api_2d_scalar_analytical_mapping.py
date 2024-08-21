@@ -59,7 +59,7 @@ def run_poisson_2d(solution, f, domain, ncells, degree, comm=None):
 def test_poisson_2d_analytical_mapping_0():
 
     domain  = Square('A',bounds1=(0., 1.), bounds2=(0, np.pi))
-    mapping = PolarMapping('M1',2, c1= 0., c2= 0., rmin = 0., rmax=1.)
+    mapping = PolarMapping('M1', c1= 0., c2= 0., rmin = 0., rmax=1.)
 
     mapped_domain = mapping(domain)
 

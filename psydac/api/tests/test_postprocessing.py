@@ -49,8 +49,8 @@ def build_2_mapped_squares():
     A = Square('A',bounds1=(-0.5, 1.), bounds2=(0, np.pi/2))
     B = Square('B',bounds1=(-0.5, 1.), bounds2=(np.pi/2, np.pi))
 
-    mapping_1 = PolarMapping('M1',dim=2, c1= 0., c2= 0., rmin = 0.1, rmax=1.)
-    mapping_2 = PolarMapping('M2',dim=2, c1= 0., c2= 0., rmin = 0.1, rmax=1.)
+    mapping_1 = PolarMapping('M1', c1= 0., c2= 0., rmin = 0.1, rmax=1.)
+    mapping_2 = PolarMapping('M2', c1= 0., c2= 0., rmin = 0.1, rmax=1.)
 
     D1     = mapping_1(A)
     D2     = mapping_2(B)

@@ -31,7 +31,7 @@ def test_c1_projections(degrees, ncells, verbose=False):
     lims_2       = (0, 2*np.pi)
     period_1     = False
     period_2     = True
-    map_analytic = PolarMapping('M', dim=2, rmin=0, rmax=1, c1=0.0, c2=0.0)
+    map_analytic = PolarMapping('M', rmin=0, rmax=1, c1=0.0, c2=0.0)
 
     # Discretization: number of elements and polynomial degree
     ne1, ne2 = ncells

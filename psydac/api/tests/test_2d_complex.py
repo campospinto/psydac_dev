@@ -491,8 +491,8 @@ def test_maxwell_2d_2_patch_dirichlet_parallel_0():
     A = Square('A', bounds1=bounds1, bounds2=bounds2_A)
     B = Square('B', bounds1=bounds1, bounds2=bounds2_B)
 
-    mapping_1 = PolarMapping('M1',2, c1= 0., c2= 0., rmin = 0., rmax=1.)
-    mapping_2 = PolarMapping('M2',2, c1= 0., c2= 0., rmin = 0., rmax=1.)
+    mapping_1 = PolarMapping('M1', c1= 0., c2= 0., rmin = 0., rmax=1.)
+    mapping_2 = PolarMapping('M2', c1= 0., c2= 0., rmin = 0., rmax=1.)
 
     D1 = mapping_1(A)
     D2 = mapping_2(B)

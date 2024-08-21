@@ -32,37 +32,37 @@ def discrete_mapping(mapping, ncells, degree, **kwargs):
 
         elif mapping == 'collela':
             default_params = dict(k1=1.0, k2=1.0, eps=0.1)
-            map_symbolic = CollelaMapping2D('M', dim=dim, **default_params)
+            map_symbolic = CollelaMapping2D('M', **default_params)
             limits   = ((0, 1), (0, 1))
             periodic =  (False, False)
 
         elif mapping == 'circle':
             default_params = dict(rmin=0.0, rmax=1.0, c1=0.0, c2=0.0)
-            map_symbolic = PolarMapping('M', dim=dim, **default_params)
+            map_symbolic = PolarMapping('M', **default_params)
             limits   = ((0, 1), (0, 2*np.pi))
             periodic =  (False, True)
 
         elif mapping == 'annulus':
             default_params = dict(rmin=0.0, rmax=1.0, c1=0.0, c2=0.0)
-            map_symbolic = PolarMapping('M', dim=dim, **default_params)
+            map_symbolic = PolarMapping('M', **default_params)
             limits   = ((1, 4), (0, 2*np.pi))
             periodic =  (False, True)
 
         elif mapping == 'quarter_annulus':
             default_params = dict(rmin=0.0, rmax=1.0, c1=0.0, c2=0.0)
-            map_symbolic = PolarMapping('M', dim=dim, **default_params)
+            map_symbolic = PolarMapping('M', **default_params)
             limits   = ((1, 4), (0, np.pi/2))
             periodic =  (False, False)
 
         elif mapping == 'target':
             default_params = dict(c1=0, c2=0, k=0.3, D=0.2)
-            map_symbolic = TargetMapping('M', dim=dim, **default_params)
+            map_symbolic = TargetMapping('M', **default_params)
             limits   = ((0, 1), (0, 2*np.pi))
             periodic =  (False, True)
 
         elif mapping == 'czarny':
             default_params = dict(c2=0, b=1.4, eps=0.3)
-            map_symbolic = CzarnyMapping('M', dim=dim, **default_params)
+            map_symbolic = CzarnyMapping('M', **default_params)
             limits   = ((0, 1), (0, 2*np.pi))
             periodic =  (False, True)
 
