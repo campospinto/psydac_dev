@@ -170,8 +170,8 @@ def plot_field_and_error(name, x, y, field_h, field_ex, *gridlines):
 
 def update_plot(fig, t, x, y, field_h, field_ex):
     ax0, ax1, cax0, cax1 = fig.axes
-    ax0.collections.clear(); cax0.clear()
-    ax1.collections.clear(); cax1.clear()
+    ax0.collections[0].remove(); ax1.collections[0].remove()
+    cax0.collections[0].remove(); cax1.collections[0].remove()
     im0 = ax0.contourf(x, y, field_h)
     im1 = ax1.contourf(x, y, field_ex - field_h)
     fig.colorbar(im0, cax=cax0)
